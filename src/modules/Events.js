@@ -1,30 +1,46 @@
-import handleRequest from './App';
+import { handleRequest, LastCoords } from './App';
 import Search from './Search';
 import Display from './Display';
+import formatWeather from './Format';
+import getCurrentWeather from './Weather';
 
 let fahrenheit = true;
+const coords = new LastCoords();
 
 export default class Events {
   static loadPage() {
     handleRequest('San Francisco').then((weather) => {
-      Display.displayCurrentWeather(weather);
+      coords.setLat(weather.coord.lat);
+      coords.setLon(weather.coord.lon);
+      Display.displayCurrentWeather(formatWeather(weather, fahrenheit));
+    }).then(() => {
+      this.searchbarListener();
+      this.unitToggleListener();
     });
-    this.searchbarListener();
-    this.unitToggleListener();
   }
 
   static searchbarListener() {
     const searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', () => {
-      handleRequest(Search.handleSearch());
+      handleRequest(Search.handleSearch()).then((weather) => {
+        coords.setLat(weather.coord.lat);
+        coords.setLon(weather.coord.lon);
+        Display.displayCurrentWeather(formatWeather(weather, fahrenheit));
+      }).then(() => {
+        this.unitToggleListener();
+      });
     });
   }
 
   static unitToggleListener() {
     const toggleButton = document.getElementById('toggleButton');
     toggleButton.addEventListener('click', () => {
-      fahrenheit = !fahrenheit;
-      Display.toggleUnits(fahrenheit);
+      getCurrentWeather(coords.getLat(), coords.getLon()).then((weather) => {
+        fahrenheit = !fahrenheit;
+        Display.displayCurrentWeather(formatWeather(weather, fahrenheit));
+      }).then(() => {
+        this.unitToggleListener();
+      });
     });
   }
 }
