@@ -14,3 +14,14 @@ body {
 .hidden {
   display: none;
 }
+
+/* || Forecast Weather styles */
+
+.forecast {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.forecastCell {
+  
+}

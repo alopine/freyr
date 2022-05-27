@@ -29,13 +29,24 @@ export default class Display {
     `;
   }
 
-  static displayForecast(forecast) {}
-
-  static toggleUnits(coords, fahrenheit) {
-    
+  static displayForecast(forecast) {
+    const forecastRow = document.querySelector('.forecast');
+    forecastRow.innerHTML = '';
+    forecast.forEach((forecastDay) => {
+      const forecastCell = document.createElement('div');
+      forecastCell.classList.add('forecastCell');
+      forecastCell.innerHTML = `
+      <p>${forecastDay.day}</p>
+      <img src="${forecastDay.img}">
+      <p>${forecastDay.desc}</p>
+      <p>${forecastDay.max}</p>
+      <p>${forecastDay.min}</p>
+      `;
+      forecastRow.appendChild(forecastCell);
+    });
   }
 
   static displayError(error) {
-    
+    document.querySelector('.errorWrapper').innerHTML = error;
   }
 }
