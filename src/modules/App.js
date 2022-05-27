@@ -1,6 +1,11 @@
 import getCurrentWeather from './Weather';
 import getLocation from './Location';
 
+function handleSearch() {
+  const searchbar = document.getElementById('searchbar');
+  return searchbar.value.trim();
+}
+
 async function handleRequest(location) {
   try {
     const response = await getLocation(location);
@@ -39,4 +44,4 @@ class LastCoords {
   }
 }
 
-export { handleRequest, LastCoords };
+export { handleSearch, handleRequest, LastCoords };

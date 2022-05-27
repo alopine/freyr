@@ -1,5 +1,4 @@
-import { handleRequest, LastCoords } from './App';
-import Search from './Search';
+import { handleSearch, handleRequest, LastCoords } from './App';
 import Display from './Display';
 import formatWeather from './Format';
 import getCurrentWeather from './Weather';
@@ -22,7 +21,7 @@ export default class Events {
   static searchbarListener() {
     const searchButton = document.getElementById('searchButton');
     searchButton.addEventListener('click', () => {
-      handleRequest(Search.handleSearch()).then((weather) => {
+      handleRequest(handleSearch()).then((weather) => {
         coords.setLat(weather.coord.lat);
         coords.setLon(weather.coord.lon);
         Display.displayCurrentWeather(formatWeather(weather, fahrenheit));
