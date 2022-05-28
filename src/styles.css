@@ -1,27 +1,159 @@
 /* || General styles */
 
+:root {
+  --bg-color: #0f0e17;
+  --header-text-color: #fffffe;
+  --para-text-color: #a7a9be;
+  --highlight-color: #ff8906;
+  --error-color: #e53170;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--para-text-color);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sectionFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* || Header styles */
+header {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.searchWrapper {
+  margin-top: 1rem;
+}
+
+.searchWrapper, .errorWrapper {
+  justify-content: flex-end;
+}
+
+.search {
+  border-bottom: 1px solid var(--highlight-color);
+  display: flex;
+}
+
+#searchbar { 
+  background-color: transparent;
+  color: var(--header-text-color);
+  padding-bottom: 0.25rem;
+  border: none;
+}
+
+#searchbar:focus {
+  outline: none;
+}
+
+#searchButton {
+  margin-right: 0.25rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* || Error wrapper styles */
+
+.errorWrapper {
+  height: 1rem;
+  color: var(--error-color);
+  margin: 0 1rem;
 }
 
 /* || Current Weather styles */
 
 .currentWeather {
+  padding: 0 1rem;
+}
+
+.weatherDesc {
+  text-transform: capitalize;
+}
+
+.currentMainPanel, .detailsPanel, .detailItem {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
 }
 
-.hidden {
-  display: none;
+.currentMainPanel>div {
+  flex: 1;
+}
+
+.currentTemp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tempWrapper {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+#toggleButton {
+  font-size: 1rem;
+  color: var(--header-text-color);
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.toggle {
+  color: var(--para-text-color);
+}
+
+.currentMainPanel>div, .detailsPanel>section {
+  flex: 1;
+  margin: 0.5rem 1rem;
+}
+
+.detailsPanel>section>.detailItem:first-child {
+  border: none;
+}
+
+.detailItem {
+  border-top: 1px solid var(--highlight-color);
+  padding: 1rem 0;
 }
 
 /* || Forecast Weather styles */
 
 .forecast {
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
 .forecastCell {
-  
+  text-align: center;
+  margin: 0 1rem;
+  flex: 1;
+}
+
+.dayHeader {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.dayHeader, .forecastDesc {
+  color: var(--highlight-color);
+}
+
+.forecastDesc {
+  text-transform: capitalize;
+}
+
+.forecastMax {
+  color: var(--header-text-color)
 }

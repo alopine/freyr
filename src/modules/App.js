@@ -13,7 +13,7 @@ async function handleRequest(location) {
   try {
     const response = await getLocation(location);
     if (!response) {
-      throw new Error('Location not found');
+      throw new Error('Location not found.');
     } else {
       const weather = await getWeather(response.lat, response.lon);
       return weather;

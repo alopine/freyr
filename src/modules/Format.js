@@ -26,10 +26,12 @@ function formatWeather(weather, fahrenheit) {
   const degree = fahrenheit ? '°F' : '°C';
   const currentWeather = {
     img: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
-    temperature: `${tempConvert(weather.main.temp)} ${degree}`,
-    feel: `${tempConvert(weather.main.feels_like)} ${degree}`,
-    max: `${tempConvert(weather.main.temp_max)} ${degree}`,
-    min: `${tempConvert(weather.main.temp_min)} ${degree}`,
+    temperature: Math.round(tempConvert(weather.main.temp)),
+    symbol: degree,
+    oppSymbol: fahrenheit ? '°C' : '°F',
+    feel: `${Math.round(tempConvert(weather.main.feels_like))} ${degree}`,
+    max: `${Math.round(tempConvert(weather.main.temp_max))} ${degree}`,
+    min: `${Math.round(tempConvert(weather.main.temp_min))} ${degree}`,
     place: `${weather.name}, ${weather.sys.country}`,
     date: `${localDate[0]} ${localDate[2]} ${localDate[1]}, ${localDate[3]}`,
     time: formatTime(localDate),
@@ -41,8 +43,8 @@ function formatWeather(weather, fahrenheit) {
       ? `${Math.round(weather.wind.speed * 2.237)} mph`
       : `${weather.wind.speed} m/s`,
     cloudiness: `${weather.clouds.all}%`,
-    rain: `${weather.rain ? weather.rain['1h'] : 'No rain'}`,
-    snow: `${weather.snow ? weather.snow['1h'] : 'No snow'}`,
+    rain: `${weather.rain ? `${weather.rain['1h']} mm` : 'No rain'}`,
+    snow: `${weather.snow ? `${weather.snow['1h']} mm` : 'No snow'}`,
     sunrise: formatTime(formatDate(weather.sys.sunrise, weather.timezone)),
     sunset: formatTime(formatDate(weather.sys.sunset, weather.timezone)),
   };
@@ -60,8 +62,8 @@ function formatForecast(weather, fahrenheit) {
     forecastData.push({
       img: `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`,
       day: formatDay(formatDate(day.dt, offset)),
-      max: `${tempConvert(day.temp.max)} ${degree}`,
-      min: `${tempConvert(day.temp.min)} ${degree}`,
+      max: `${Math.round(tempConvert(day.temp.max))} ${degree}`,
+      min: `${Math.round(tempConvert(day.temp.min))} ${degree}`,
       desc: day.weather[0].description,
     });
   });

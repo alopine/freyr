@@ -19,7 +19,9 @@ export default class Events {
   static searchListener() {
     const search = document.querySelector('.search');
     search.addEventListener('submit', () => {
-      this.submitSearch();
+      if (document.getElementById('searchbar').value) {
+        this.submitSearch();
+      }
     });
   }
 

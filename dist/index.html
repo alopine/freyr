@@ -8,12 +8,25 @@
     <title>Odin Weather App</title>
   </head>
   <body>
-    <form class="search" onsubmit="return false;">
-      <input type="text" name="searchBar" id="searchbar" autocomplete="off" />
-      <button type="submit" id="searchButton">Search</button>
-    </form>
-    <div class="errorWrapper"></div>
+    <header>
+      <h1 id="locationHeader"></h1>
+      <div class="searchWrapper sectionFlex">
+        <form class="search" onsubmit="return false;">
+          <span type="submit" id="searchButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="#ff8906" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input
+            type="text"
+            name="searchBar"
+            id="searchbar"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </form>
+      </div>
+    </header>
+    <div class="errorWrapper sectionFlex"></div>
     <div class="currentWeather"></div>
-    <div class="forecast"></div>
+    <div class="forecast sectionFlex"></div>
   </body>
 </html>
